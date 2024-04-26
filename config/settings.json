@@ -1,0 +1,10 @@
+{
+    "database": {
+        "host": "localhost",
+        "user": "your_username",
+        "password": "your_password"
+    },
+    "API": {
+      "key": "c4f7b0d1-b146-40ad-9142-033dbe5672a4"
+    }
+}
