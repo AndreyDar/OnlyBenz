@@ -10,5 +10,8 @@
     "recombee": {
       "db_id": "makeathon-dev",
       "db_private_token": "YhPUWgQjduD2HqsW4WNZzIfHENZdatxMxBOC5tznPTj63JWuhv6uZGVpRdqmFls8"
+    },
+    "openAI_api":{
+      "key": "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"
     }
 }
