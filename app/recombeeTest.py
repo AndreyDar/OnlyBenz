@@ -8,7 +8,7 @@ with open('../config/settings.json', 'r') as config_file:
     config = json.load(config_file)
 
 
-client = RecombeeClient(config['recombee']['db_id'], config['recombee']['db_private_token'], region=Region.US_WEST)
+client = RecombeeClient(config['recombee']['db_id'], config['recombee']['db_private_token'], region=Region.EU_WEST)
 
 #Generate some random purchases of items by users
 PROBABILITY_PURCHASED = 0.1
