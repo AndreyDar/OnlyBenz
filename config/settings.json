@@ -4,7 +4,11 @@
         "user": "your_username",
         "password": "your_password"
     },
-    "API": {
+    "API_Mercedes": {
       "key": "c4f7b0d1-b146-40ad-9142-033dbe5672a4"
+    },
+    "recombee": {
+      "db_id": "makeathon-dev",
+      "db_private_token": "YhPUWgQjduD2HqsW4WNZzIfHENZdatxMxBOC5tznPTj63JWuhv6uZGVpRdqmFls8"
     }
 }
