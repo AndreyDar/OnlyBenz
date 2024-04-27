@@ -174,7 +174,48 @@ def generate_description(raw_message):
     "budget": 2,
     }
     //YOUR SECOND ANSWER END
-    """}, {"role": "user", "content": f"{raw_message}"}]
+    """},
+
+    {"role": "user", "content": "I'm in the market for an electric car that's sleek, fast, and has all the latest tech features. Price isn't a huge concern, but I don't want to break the bank. I need something with enough range to handle my daily commute and occasional road trips."},
+    {"role": "assistant", "content": """
+configuration: {
+"name": "Mercedes",
+"horsepower": 400,
+"priceMin": 100000,
+"priceMax": 60000,
+"consumption": 15,
+"range": 400,
+"rangeIn": 500,
+"seats": 4,
+"chargeTime": 45,
+"is4Matic": false,
+"size": 5,
+"globalRange": 8,
+"budget": 70000
+}
+weights: {
+"horsepower": 9,
+"priceMin": 6,
+"priceMax": 8,
+"consumption": 3,
+"range": 8,
+"rangeIn": 9,
+"seats": 3,
+"chargeTime": 5,
+"is4Matic": 2,
+"size": 6,
+"globalRange": 7,
+"budget": 2
+}"""},
+{
+    "role" : "user", "content" : "I'm looking for an electric car that's compact, affordable, and eco-friendly. I live in the city, so I don't need a lot of horsepower or range. It should have enough space for groceries and a couple of passengers."
+}
+    #{"role": "user", "content": f"{raw_message}"},
+    #{"role": "assistant", "content": f"{raw_message}"},
+    #{"role": "user", "content": f"{raw_message}"},
+    #{"role": "assistant", "content": f"{raw_message}"},
+    #{"role": "user", "content": f"{raw_message}"}
+]
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -186,14 +227,15 @@ def generate_description(raw_message):
     return reply
 
 
-# def main_test():
-#     print(generate_description(
-#         "I'm an eco-conscious consumer looking for an electric car with a focus on sustainability. It should have a "
-#         "minimal carbon footprint and be made from recycled materials where possible. Range and price are secondary "
-#         "considerations for me."
-#         ))
-#
-#
-# # Press the green button in the gutter to run the script.
-# if __name__ == '__main__':
-#     main_test()
+def main_test():
+    print(generate_description(
+         "I'm an eco-conscious consumer looking for an electric car with a focus on sustainability. It should have a "
+         "minimal carbon footprint and be made from recycled materials where possible. Range and price are secondary "
+         "considerations for me."
+         )
+    )
+
+
+ # Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    main_test()
