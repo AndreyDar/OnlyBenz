@@ -3,15 +3,17 @@ from io import BytesIO
 
 import json
 
+requests_list = ['EQA-KLASSE','EQB-KLASSE', 'EQE-KLASSE', 'EQS-KLASSE', 'ESPRINTER', 'ECITAN', 'EQT', 'EVITO', 'EQV']
+
 # Load the JSON configuration file
-with open('config/settings.json', 'r') as config_file:
+with open('../config/settings.json', 'r') as config_file:
     config = json.load(config_file)
 
-def testCurl():
+def testCurl(classId):
     buffer = BytesIO()
     c = pycurl.Curl()
-    c.setopt(c.URL, 'https://api.mercedes-benz.com/configurator/v2/markets/de_DE/models?bodyId=LIMOUSINE_LANG')
-    c.setopt(c.HTTPHEADER, ['accept: application/json', 'x-api-key:' + config['API']['key']])
+    c.setopt(c.URL, "https://api.mercedes-benz.com/configurator/v2/markets/de_DE/models?classId=" + str(classId))
+    c.setopt(c.HTTPHEADER, ['accept: application/json', 'x-api-key:' + config['API_Mercedes']['key']])
     c.setopt(c.WRITEDATA, buffer)
     c.perform()
     c.close()
@@ -22,6 +24,7 @@ def testCurl():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    testCurl()
+    for(classId) in requests_list:
+        testCurl(classId)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
