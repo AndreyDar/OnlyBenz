@@ -10,7 +10,7 @@ with open('../config/settings.json', 'r') as config_file:
 
 client = RecombeeClient(config['recombee']['db_id'], config['recombee']['db_private_token'], region=Region.EU_WEST)
 
-client.send(SetItemValues('xyz',
+client.send(SetItemValues('4656001',
     {
         "modelId": "4656001",
         "name": "G 580 mit EQ Technologie",
