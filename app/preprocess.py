@@ -1,5 +1,8 @@
 import json
 import math
+from itertools import islice
+
+NORMALIZER = 1000000
 
 configurationTest = {
     "name": "Mercedes",
@@ -36,25 +39,26 @@ def normalize(testdata, configuration, parameterToNormalize):
     maxValue = 0.001
     minValue = 1000
 
+    old_data = testdata
+
     for car in testdata:
         if car[parameterToNormalize] > maxValue:
             maxValue = car[parameterToNormalize]
         if car[parameterToNormalize] < minValue:
             minValue = car[parameterToNormalize]
 
-    if (parameterToNormalize != 'is4Matic'):
-        configuration[parameterToNormalize] = configuration[parameterToNormalize] = 1 + (9 / (maxValue - minValue)) * (configuration[parameterToNormalize] - minValue)
-
+    if parameterToNormalize != 'is4Matic':
+        configuration[parameterToNormalize] = configuration[parameterToNormalize] = (1 + (9 / (maxValue - minValue))
+                                                                                     * (configuration[
+                                                                                            parameterToNormalize] - minValue))
 
     for car in testdata:
-        if(parameterToNormalize != 'is4Matic'):
-            if (parameterToNormalize == 'budget'):
-                car[parameterToNormalize] = 1 + (9 / (maxValue - minValue)) * (car['priceMin'] - minValue)
-            else:
-                car[parameterToNormalize] = 1 + (9 / (maxValue - minValue)) * (car[parameterToNormalize] - minValue)
+        if parameterToNormalize == 'budget':
+            car[parameterToNormalize] = 1 + (9 / (maxValue - minValue)) * (car['priceMin'] - minValue)
+        else:
+            car[parameterToNormalize] = 1 + (9 / (maxValue - minValue)) * (car[parameterToNormalize] - minValue)
 
-
-    return (testdata, configuration)
+    return testdata, configuration
 
 
 # def preprocessData():
@@ -73,7 +77,7 @@ def normalize(testdata, configuration, parameterToNormalize):
 
 def matchCars(preprocessedData, weights, configuration):
     final_dictionary = {}
-    propertiesToProcess = {"horsepower", "consumption", "chargeTime", "is4Matic", "range", "budget"}
+    propertiesToProcess = {"horsepower", "consumption", "chargeTime", "range", "budget"}
     configuration['budget'] = (configuration['priceMin'] + configuration['priceMax']) / 2
 
     for prop in propertiesToProcess:
@@ -84,20 +88,29 @@ def matchCars(preprocessedData, weights, configuration):
     for car in preprocessedData:
         deviation = 0
         for prop in propertiesToProcess:
-            deviation += weights[prop] * ((configuration[prop] - car[prop]) ** 2)
+            deviation += weights[prop] * abs(configuration[prop] - car[prop]) / NORMALIZER
         final_dictionary.update({deviation: car})
-
-    print(configuration)
-    print()
 
     ranked_dict = dict(sorted(final_dictionary.items()))
 
-    for item in ranked_dict:
-        print(str(item) + " " + str(ranked_dict[item]))
+    result_str = 'I have found following cars for you: \n'
+    for i in range(0, 3):
+        suggested_car = ranked_dict[list(ranked_dict.keys())[i]]
+        car = None
 
+        with open('db_new.json', 'r') as config_file:
+            old_data = json.load(config_file)
+        for entry in old_data:
+            if entry['name'] == suggested_car.get('name'):
+                car = entry
+                break
 
+        suggestion = (car.get("name") + ", starting from " + str(car.get("priceMin")) + " EUR, "
+                      + str(car.get("horsepower")) + " HP, " + str(car.get("consumption")) + " W/100km, "
+                      + str(car.get("range")) + " km range" + '\n')
+        result_str += suggestion
 
-    return ranked_dict
+    return result_str
 
 
 if __name__ == '__main__':
