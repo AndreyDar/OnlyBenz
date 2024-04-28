@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import root, login, chat_client, shell_api
+from .routers import root, login, chat_client_data_structure, shell_api
 
 app = FastAPI()
 
