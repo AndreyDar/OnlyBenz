@@ -3,7 +3,7 @@ import json
 
 
 def generate_description(raw_message):
-    with open('config/settings.json', 'r') as config_file:
+    with open('../../config/settings.json', 'r') as config_file:
         config = json.load(config_file)
 
     client = OpenAI(api_key=config['openAI_api']['key'])
@@ -174,14 +174,15 @@ def generate_description(raw_message):
     Flag var example:
     //YOUR THIRD ANSWER EXAMPLE START
     1)Consider 50% of parameters aren't set to None
-    ready = true
+    "ready": true
     2)Consider 50% of parameters are set to None
-    ready = false
+    "ready": false
 
     """},
 
     {"role": "user", "content": "I'm in the market for an electric car that's sleek, fast, and has all the latest tech features. Price isn't a huge concern, but I don't want to break the bank. I need something with enough range to handle my daily commute and occasional road trips."},
     {"role": "assistant", "content": """
+[
 configuration: {
 "name": "Mercedes",
 "horsepower": 400,
@@ -196,7 +197,7 @@ configuration: {
 "size": None,
 "globalRange": 8,
 "budget": 70000
-}
+},
 weights: {
 "horsepower": 9,
 "priceMin": 6,
@@ -210,12 +211,14 @@ weights: {
 "size": 0,
 "globalRange": 7,
 "budget": 2
-}
-ready = true
+},
+"ready": true
+]
 """},
     {"role": "user", "content": "I'm an eco-conscious consumer looking for an electric car with a focus on sustainability. It should have a minimal carbon footprint and be made from recycled materials where possible. Range and price are secondary considerations for me."
 },
     {"role": "assistant", "content": """
+[
 configuration: {
 "name": "Mercedes",
 "horsepower": None,
@@ -230,7 +233,7 @@ configuration: {
 "size": None,
 "globalRange": None,
 "budget": None
-}
+},
 weights: {
 "horsepower": 0,
 "priceMin": 0,
@@ -244,43 +247,46 @@ weights: {
 "size": 0,
 "globalRange": 0,
 "budget": 0
-}
-ready = false"},
+},
+"ready": false
+]
 """},
                 {"role": "user",
                  "content": "I'm a tech enthusiast looking for an electric car with the latest connectivity options and autonomous driving capabilities. Performance is important to me, so I want something with high horsepower and fast acceleration. Price is not a concern."},
                 {"role": "assistant", "content": """
-    configuration: {
-    "name": "Mercedes",
-    "horsepower": 600,
-    "priceMin": 200000,
-    "priceMax": 150000,
-    "consumption": None,
-    "range": None,
-    "rangeIn": None,
-    "seats": None,
-    "chargeTime": None,
-    "is4Matic": None,
-    "size": None,
-    "globalRange": None,
-    "budget": 200000
-    }
-    weights: {
-    "horsepower": 9,
-    "priceMin": 6,
-    "priceMax": 8,
-    "consumption": 0,
-    "range": 0,
-    "rangeIn": 0,
-    "seats": 0,
-    "chargeTime": 0,
-    "is4Matic": 0,
-    "size": 0,
-    "globalRange": 0,
-    "budget": 2
-    }
-    ready = false
-    """}
+[
+configuration: {
+"name": "Mercedes",
+"horsepower": 600,
+"priceMin": 200000,
+"priceMax": 150000,
+"consumption": None,
+"range": None,
+"rangeIn": None,
+"seats": None,
+"chargeTime": None,
+"is4Matic": None,
+"size": None,
+"globalRange": None,
+"budget": 200000
+},
+weights: {
+"horsepower": 9,
+"priceMin": 6,
+"priceMax": 8,
+"consumption": 0,
+"range": 0,
+"rangeIn": 0,
+"seats": 0,
+"chargeTime": 0,
+"is4Matic": 0,
+"size": 0,
+"globalRange": 0,
+"budget": 2
+},
+"ready": false
+]
+"""}
     #{"role": "user", "content": f"{raw_message}"},
     #{"role": "assistant", "content": f"{raw_message}"},
     #{"role": "user", "content": f"{raw_message}"}
@@ -310,3 +316,4 @@ def main_test():
  # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main_test()
+
