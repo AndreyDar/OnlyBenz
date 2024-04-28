@@ -66,7 +66,7 @@ AMG EQE 53 4MATIC+ SUV):).
     }
     b) Behevioure in case the user didn't specified some parameter's value AND it's value doesn't logically emerges from the other:
     For Boolean: value = false
-    For Numerical: value = None
+    For Numerical: value = null
     c) Parameter description:
     - name:
         1) Customer specified the parameter precisely AND it correspond to one of the following names in parentheses(EQE 300
@@ -171,7 +171,7 @@ AMG EQE 53 4MATIC+ SUV):
     Customer specified the parameter:
     a) Customer prefers a car with 4MATIC: value is true.
     b) Customer prefers a car without 4MATIC: value is false.
-    c) Not defined => true if emerges from other requirements, otherwise None
+    c) Not defined => true if emerges from other requirements, otherwise null
     - Size:
     Range: [4;10]
     Customer specified the parameter precisely:
@@ -228,9 +228,9 @@ AMG EQE 53 4MATIC+ SUV):
     **FLAG VAR**
     Flag var example:
     //YOUR THIRD ANSWER EXAMPLE START
-    1)Consider 50% of parameters aren't set to None
+    1)Consider 50% of parameters aren't set to null
     "ready": true
-    2)Consider 50% of parameters are set to None
+    2)Consider 50% of parameters are set to null
     "ready": false
     3)Consider the name of the car is specified AND it correspond to one of the following names in parentheses(EQE 300
 EQE 350
@@ -266,19 +266,19 @@ AMG EQE 53 4MATIC+ SUV):
 
     {"role": "user", "content": "I'm in the market for an electric car that's sleek, fast, and has all the latest tech features. Price isn't a huge concern, but I don't want to break the bank. I need something with enough range to handle my daily commute and occasional road trips."},
     {"role": "assistant", "content": """
-[
+{
 "configuration": {
 "name": "Mercedes",
 "horsepower": 400,
 "priceMin": 100000,
 "priceMax": 60000,
-"consumption": None,
+"consumption": null,
 "range": 400,
 "rangeIn": 500,
-"seats": None,
-"chargeTime": None,
-"is4Matic": None,
-"size": None,
+"seats": null,
+"chargeTime": null,
+"is4Matic": null,
+"size": null,
 "globalRange": 8,
 "budget": 70000
 },
@@ -297,26 +297,26 @@ AMG EQE 53 4MATIC+ SUV):
 "budget": 2
 },
 "ready": true
-]
+}
 """},
     {"role": "user", "content": "I'm an eco-conscious consumer looking for an electric car with a focus on sustainability. It should have a minimal carbon footprint and be made from recycled materials where possible. Range and price are secondary considerations for me."
 },
     {"role": "assistant", "content": """
-[
+}
 "configuration": {
 "name": "Mercedes",
-"horsepower": None,
-"priceMin": None,
-"priceMax": None,
+"horsepower": null,
+"priceMin": null,
+"priceMax": null,
 "consumption": 20000,
-"range": None,
-"rangeIn": None,
-"seats": None,
-"chargeTime": None,
-"is4Matic": None,
-"size": None,
-"globalRange": None,
-"budget": None
+"range": null,
+"rangeIn": null,
+"seats": null,
+"chargeTime": null,
+"is4Matic": null,
+"size": null,
+"globalRange": null,
+"budget": null
 },
 "weights": {
 "horsepower": 0,
@@ -333,25 +333,25 @@ AMG EQE 53 4MATIC+ SUV):
 "budget": 0
 },
 "ready": false
-]
+}
 """},
                 {"role": "user",
                  "content": "I'm a tech enthusiast looking for an electric car with the latest connectivity options and autonomous driving capabilities. Performance is important to me, so I want something with high horsepower and fast acceleration. Price is not a concern."},
                 {"role": "assistant", "content": """
-[
+{
 "configuration": {
 "name": "Mercedes",
 "horsepower": 600,
 "priceMin": 200000,
 "priceMax": 150000,
-"consumption": None,
-"range": None,
-"rangeIn": None,
-"seats": None,
-"chargeTime": None,
-"is4Matic": None,
-"size": None,
-"globalRange": None,
+"consumption": null,
+"range": null,
+"rangeIn": null,
+"seats": null,
+"chargeTime": null,
+"is4Matic": null,
+"size": null,
+"globalRange": null,
 "budget": 200000
 },
 "weights": {
@@ -369,7 +369,7 @@ AMG EQE 53 4MATIC+ SUV):
 "budget": 2
 },
 "ready": false
-]
+}
 """}
     #{"role": "user", "content": f"{raw_message}"},
     #{"role": "assistant", "content": f"{raw_message}"},
