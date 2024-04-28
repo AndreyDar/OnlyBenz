@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..gpt_datastructured_test import generate_description
+from app.api.gpt_datastructured_test import generate_description
 
 router = APIRouter()
 

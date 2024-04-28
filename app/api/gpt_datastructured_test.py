@@ -3,7 +3,7 @@ import json
 
 
 def generate_description(raw_message):
-    with open('../config/settings.json', 'r') as config_file:
+    with open('config/settings.json', 'r') as config_file:
         config = json.load(config_file)
 
     client = OpenAI(api_key=config['openAI_api']['key'])
