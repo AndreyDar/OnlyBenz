@@ -33,7 +33,6 @@ iface = gr.Interface(
     css=css_styles
 )
 
-# Launch the Gradio interface with the option to share it publicly
-iface.launch(share=True)
-
-# Note: The `css_style` can be defined as a string with CSS code as previously explained to customize the appearance.
+@router.on_event("startup")
+def start_gradio():
+    iface.launch(share=True)

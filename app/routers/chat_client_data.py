@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from ..api.chat_api import get_chat_client_response
+from ..api.chatgpt import chat_with_gpt
 
 router = APIRouter()
 
 @router.get("/chat-client-messages/")
-async def chat_client_messages():
-    return await get_chat_client_response()
+async def chat(prompt):
+    return {"response": chat_with_gpt(prompt)}
