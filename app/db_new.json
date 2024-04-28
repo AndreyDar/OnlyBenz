@@ -269,7 +269,7 @@
   "size": 9,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/vans/buy/van-online-configurator.html#/de_de?models=EQT"
+  "configLink": "https://www.mercedes-benz.de/vans/buy/van-online-configurator.html#/de_de?models=EQT"
 },
 {
   "name": "EQV 250 Lang",
@@ -285,7 +285,7 @@
   "size": 10,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/vans/buy/van-online-configurator.html#/?models=EQV"
+  "configLink": "https://www.mercedes-benz.de/vans/buy/van-online-configurator.html#/?models=EQV"
 },
   {
   "name": "G-Klasse",
@@ -301,7 +301,7 @@
   "size": 8,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/4656001"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/4656001"
 },
 {
   "name": "Maybach EQS SUV",
@@ -317,7 +317,7 @@
   "size": 6,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2969551"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2969551"
 },
   {
   "name": "EQS 450 4MATIC SUV",
@@ -333,7 +333,7 @@
   "size": 6,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2966231,2966241,2966341,2966441"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2966231,2966241,2966341,2966441"
 },
   {
   "name": "EQS 500 4MATIC SUV",
@@ -349,7 +349,7 @@
   "size": 6,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2966231,2966241,2966341,2966441"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2966231,2966241,2966341,2966441"
 },
   {
   "name": "EQS 580 4MATIC SUV",
@@ -365,7 +365,7 @@
   "size": 6,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2966231,2966241,2966341,2966441"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/bm/2966231,2966241,2966341,2966441"
 },
   {
   "name": "EQE 300 SUV",
@@ -381,7 +381,7 @@
   "size": 5,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
 },
   {
   "name": "EQE 350 4MATIC SUV",
@@ -397,7 +397,7 @@
   "size": 5,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
 },
   {
   "name": "EQE 500 4MATIC SUV",
@@ -413,7 +413,7 @@
   "size": 5,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
 },
   {
   "name": "AMG EQE 43 4MATIC SUV",
@@ -429,7 +429,7 @@
   "size": 5,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
 }
   ,
   {
@@ -446,6 +446,6 @@
   "size": 5,
   "globalRange": 0,
   "budget": 0,
-  "configLin": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
+  "configLink": "https://www.mercedes-benz.de/passengercars/mercedes-benz-cars/car-configurator.html/motorization/CCci/DE/de/EQE-KLASSE/OFFROADER"
 }
 ]

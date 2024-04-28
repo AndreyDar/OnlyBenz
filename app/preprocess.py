@@ -4,35 +4,6 @@ from itertools import islice
 
 NORMALIZER = 1000000
 
-configurationTest = {
-    "name": "Mercedes",
-    "horsepower": 200,
-    "priceMin": 50000,
-    "priceMax": 75000,
-    "consumption": 15,
-    "range": 300,
-    "rangeIn": 500,
-    "seats": 4,
-    "chargeTime": 45,
-    "is4Matic": False,
-    "size": 3,
-    "globalRange": 7,
-    "budget": 50000
-}
-weightsTest = {
-    "horsepower": 2,
-    "priceMin": 9,
-    "priceMax": 8,
-    "consumption": 10,
-    "range": 3,
-    "rangeIn": 7,
-    "seats": 10,
-    "chargeTime": 4,
-    "is4Matic": 9,
-    "size": 8,
-    "globalRange": 1,
-    "budget": 2
-}
 
 
 def normalize(testdata, configuration, parameterToNormalize):
@@ -47,6 +18,8 @@ def normalize(testdata, configuration, parameterToNormalize):
         if car[parameterToNormalize] < minValue:
             minValue = car[parameterToNormalize]
 
+    if configuration[parameterToNormalize] is None:
+        configuration[parameterToNormalize] = (maxValue - minValue) / 2;
     if parameterToNormalize != 'is4Matic':
         configuration[parameterToNormalize] = configuration[parameterToNormalize] = (1 + (9 / (maxValue - minValue))
                                                                                      * (configuration[
@@ -75,17 +48,19 @@ def normalize(testdata, configuration, parameterToNormalize):
 #     return testdata
 
 
-def matchCars(preprocessedData, weights, configuration):
+def matchCars(weights, configuration):
+    with open('app/db_new.json', 'r') as config_file:
+        testdata = json.load(config_file)
     final_dictionary = {}
     propertiesToProcess = {"horsepower", "consumption", "chargeTime", "range", "budget"}
     configuration['budget'] = (configuration['priceMin'] + configuration['priceMax']) / 2
 
     for prop in propertiesToProcess:
-        res = normalize(preprocessedData, configuration, prop)
+        res = normalize(testdata, configuration, prop)
         preprocessedData = res[0]
         configuration = res[1]
 
-    for car in preprocessedData:
+    for car in testdata:
         deviation = 0
         for prop in propertiesToProcess:
             deviation += weights[prop] * abs(configuration[prop] - car[prop]) / NORMALIZER
@@ -93,39 +68,64 @@ def matchCars(preprocessedData, weights, configuration):
 
     ranked_dict = dict(sorted(final_dictionary.items()))
 
-    result_str = 'I have found following cars for you: \n'
+    result_str = 'I have found following cars for you: \n\n\n'
     for i in range(0, 3):
         suggested_car = ranked_dict[list(ranked_dict.keys())[i]]
         car = None
 
-        with open('db_new.json', 'r') as config_file:
+        with open('app/db_new.json', 'r') as config_file:
             old_data = json.load(config_file)
         for entry in old_data:
             if entry['name'] == suggested_car.get('name'):
                 car = entry
                 break
 
-        suggestion = (car.get("name") + ", starting from " + str(car.get("priceMin")) + " EUR, "
-                      + str(car.get("horsepower")) + " HP, " + str(car.get("consumption")) + " W/100km, "
-                      + str(car.get("range")) + " km range" + '\n')
+        formatic = "4Matic\n" if car.get("is4Matic") else ""
+        suggestion = (car.get("name") + "\nstarting from " + str(car.get("priceMin")) + " EUR \n"
+                      + str(car.get("horsepower")) + " HP \n" + str(car.get("consumption")) + " W/100km \n"
+                      + str(car.get("range")) + " km range" + '\n' + str(car.get("seats")) + " seats \n") + formatic + "\n"
         result_str += suggestion
+
+    result_str += "\nIf you like one of these cars, let me know!"
 
     return result_str
 
 
 def get_matching_names(model_name):
-    with open('db_new.json', 'r') as config_file:
+    with open('app/db_new.json', 'r') as config_file:
         data = json.load(config_file)
 
-    possible_names = []
+    possible_cars = []
     for entry in data:
         if model_name in entry['name']:
-            possible_names.append(entry['name'])
+            possible_cars.append(entry)
 
-    return possible_names
+    result_str = 'I have found following cars for you: \n\n\n'
+    for car in possible_cars:
+        formatic = "4Matic\n" if car.get("is4Matic") else ""
+        suggestion = (car.get("name") + "\nstarting from " + str(car.get("priceMin")) + " EUR \n"
+                      + str(car.get("horsepower")) + " HP \n" + str(car.get("consumption")) + " W/100km \n"
+                      + str(car.get("range")) + " km range" + '\n' + str(
+                car.get("seats")) + " seats \n") + formatic + "\n"
+        result_str += suggestion
 
+    result_str += "\nIf you like one of these cars, let me know!"
 
-if __name__ == '__main__':
-    with open('db_new.json', 'r') as config_file:
-        testdata = json.load(config_file)
-    print(matchCars(testdata, weightsTest, configurationTest))
+    return result_str
+
+def get_links(prefered_models):
+    with open('app/db_new.json', 'r') as config_file:
+        data = json.load(config_file)
+
+    print("preprocess")
+    print(prefered_models)
+
+    result_str = 'Configurator link for the following car(s): \n\n\n'
+    for entry in data:
+        if entry['name'] in prefered_models:
+            suggestion = entry.get("name") + "\n" + str(entry.get("configLink")) + "\n\n"
+            result_str += suggestion
+
+    result_str += "\nThank you so much for your choice! Glad to see you again next time!"
+
+    return result_str
