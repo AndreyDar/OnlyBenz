@@ -75,12 +75,7 @@ def normalize(testdata, configuration, parameterToNormalize):
 #     return testdata
 
 
-def matchCars(weights, configuration):
-
-    with open('db_new.json', 'r') as config_file:
-        preprocessedData = json.load(config_file)
-
-
+def matchCars(preprocessedData, weights, configuration):
     final_dictionary = {}
     propertiesToProcess = {"horsepower", "consumption", "chargeTime", "range", "budget"}
     configuration['budget'] = (configuration['priceMin'] + configuration['priceMax']) / 2
@@ -117,3 +112,20 @@ def matchCars(weights, configuration):
 
     return result_str
 
+
+def get_matching_names(model_name):
+    with open('db_new.json', 'r') as config_file:
+        data = json.load(config_file)
+
+    possible_names = []
+    for entry in data:
+        if model_name in entry['name']:
+            possible_names.append(entry['name'])
+
+    return possible_names
+
+
+if __name__ == '__main__':
+    with open('db_new.json', 'r') as config_file:
+        testdata = json.load(config_file)
+    print(matchCars(testdata, weightsTest, configurationTest))
