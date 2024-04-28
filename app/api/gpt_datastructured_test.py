@@ -14,7 +14,34 @@ def generate_description(raw_message):
     As a Data Structurer, verify and extract the corresponding data to fill up (if data provided) the data structure expressed with the described bellow json format.
     This data comes from Mercedes-Benz customers and is related to Mercedes-Benz electric cars."""},
                 {"role": "system", "content": """
-    **MAIN TASK**: 1) PROVIDE TWO STRUCTURED JSON OUTPUTS ( for **FIRST TASK** and **SECOND TASK** ) THAT CORRESPOND TO EACH JSON FORMAT EXAMPLE TEMPLATES SPECIFIED IN FURTHER PROMPTS. 2) PROVIDE A FLAG VERABLE, CALLED READY,(**FLAF VAR**) THAT SPECIFIES, THAT THERE IS ENOUGH DATA TO GIVE A RECOMENDATION. IT CAN HAVE EATHER VALUE true OR false.READY = true if is at least 50% of parameters are set.
+    **MAIN TASK**: 1) PROVIDE TWO STRUCTURED JSON OUTPUTS ( for **FIRST TASK** and **SECOND TASK** ) THAT CORRESPOND TO EACH JSON FORMAT EXAMPLE TEMPLATES SPECIFIED IN FURTHER PROMPTS. 2) PROVIDE A FLAG VERABLE, CALLED READY,(**FLAF VAR**) THAT SPECIFIES, THAT THERE IS ENOUGH DATA TO GIVE A RECOMENDATION. IT CAN HAVE EATHER VALUE true OR false.READY = true if is at least 50% of parameters are set or if name of the car is specified, set and corresponds to the provided names in parantethes(AND it correspond to one of the following names in parentheses(EQE 300
+EQE 350
+EQE 350 4MATIC
+EQE 500 4MATIC
+Mercedes-AMG EQE 43 4MATIC
+EQS 450 4MATIC
+EQS 450+
+EQS 500 4MATIC
+EQS 580 4MATIC
+Mercedes-AMG EQS 53 4MATIC+
+EQA 250
+EQA 300 4MATIC
+EQA 350 4MATIC
+EQB 250+
+EQB 300 4MATIC
+EQB 350 4MATIC
+EQT 200 standard
+EQV 250 Lang
+G-Klasse
+Maybach EQS SUV
+EQS 450 4MATIC SUV
+EQS 500 4MATIC SUV
+EQS 580 4MATIC SUV
+EQE 300 SUV
+EQE 350 4MATIC SUV
+EQE 500 4MATIC SUV
+AMG EQE 43 4MATIC SUV
+AMG EQE 53 4MATIC+ SUV):).
     2) YOUR ANSWER MUST NOT CONTAIN ANY OTHER INFORMATION LIKE “YES, SURE” or "structure with VALUES, structure with WIGHTS" ETC., ONLY THIS TWO JSON STRUCRURES. 3) YOU MUST SPECIFY A CERTAIN VALUE TO EACH PARAMETER, NOT A RANGE. 5) PARAMETER'S VALUE ALLIGNED IN RANGE FORM 1 TO 10 DOES NOT CORRESPOND TO IT's WEIGHT 4) YOU CAN'T GO OUT OF RANGES AND MUST ALWAYS CONSIDER INFORMATION PROVIDED IN THE PARAMETER DESCRIPTION:
     """}, {"role": "system",
            "content": """
@@ -42,8 +69,36 @@ def generate_description(raw_message):
     For Numerical: value = None
     c) Parameter description:
     - name:
-        1) Customer specified the parameter precisely:
+        1) Customer specified the parameter precisely AND it correspond to one of the following names in parentheses(EQE 300
+EQE 350
+EQE 350 4MATIC
+EQE 500 4MATIC
+Mercedes-AMG EQE 43 4MATIC
+EQS 450 4MATIC
+EQS 450+
+EQS 500 4MATIC
+EQS 580 4MATIC
+Mercedes-AMG EQS 53 4MATIC+
+EQA 250
+EQA 300 4MATIC
+EQA 350 4MATIC
+EQB 250+
+EQB 300 4MATIC
+EQB 350 4MATIC
+EQT 200 standard
+EQV 250 Lang
+G-Klasse
+Maybach EQS SUV
+EQS 450 4MATIC SUV
+EQS 500 4MATIC SUV
+EQS 580 4MATIC SUV
+EQE 300 SUV
+EQE 350 4MATIC SUV
+EQE 500 4MATIC SUV
+AMG EQE 43 4MATIC SUV
+AMG EQE 53 4MATIC+ SUV):
             => value = specified value
+             => "ready": true
         2) OTHERWISE value = "Mercedes"
     - Horsepower:
     Range: [100;600]
@@ -177,13 +232,42 @@ def generate_description(raw_message):
     "ready": true
     2)Consider 50% of parameters are set to None
     "ready": false
+    3)Consider the name of the car is specified AND it correspond to one of the following names in parentheses(EQE 300
+EQE 350
+EQE 350 4MATIC
+EQE 500 4MATIC
+Mercedes-AMG EQE 43 4MATIC
+EQS 450 4MATIC
+EQS 450+
+EQS 500 4MATIC
+EQS 580 4MATIC
+Mercedes-AMG EQS 53 4MATIC+
+EQA 250
+EQA 300 4MATIC
+EQA 350 4MATIC
+EQB 250+
+EQB 300 4MATIC
+EQB 350 4MATIC
+EQT 200 standard
+EQV 250 Lang
+G-Klasse
+Maybach EQS SUV
+EQS 450 4MATIC SUV
+EQS 500 4MATIC SUV
+EQS 580 4MATIC SUV
+EQE 300 SUV
+EQE 350 4MATIC SUV
+EQE 500 4MATIC SUV
+AMG EQE 43 4MATIC SUV
+AMG EQE 53 4MATIC+ SUV):
+    "ready": true
 
     """},
 
     {"role": "user", "content": "I'm in the market for an electric car that's sleek, fast, and has all the latest tech features. Price isn't a huge concern, but I don't want to break the bank. I need something with enough range to handle my daily commute and occasional road trips."},
     {"role": "assistant", "content": """
 [
-configuration: {
+"configuration": {
 "name": "Mercedes",
 "horsepower": 400,
 "priceMin": 100000,
@@ -198,7 +282,7 @@ configuration: {
 "globalRange": 8,
 "budget": 70000
 },
-weights: {
+"weights": {
 "horsepower": 9,
 "priceMin": 6,
 "priceMax": 8,
@@ -219,7 +303,7 @@ weights: {
 },
     {"role": "assistant", "content": """
 [
-configuration: {
+"configuration": {
 "name": "Mercedes",
 "horsepower": None,
 "priceMin": None,
@@ -234,7 +318,7 @@ configuration: {
 "globalRange": None,
 "budget": None
 },
-weights: {
+"weights": {
 "horsepower": 0,
 "priceMin": 0,
 "priceMax": 0,
@@ -255,7 +339,7 @@ weights: {
                  "content": "I'm a tech enthusiast looking for an electric car with the latest connectivity options and autonomous driving capabilities. Performance is important to me, so I want something with high horsepower and fast acceleration. Price is not a concern."},
                 {"role": "assistant", "content": """
 [
-configuration: {
+"configuration": {
 "name": "Mercedes",
 "horsepower": 600,
 "priceMin": 200000,
@@ -270,7 +354,7 @@ configuration: {
 "globalRange": None,
 "budget": 200000
 },
-weights: {
+"weights": {
 "horsepower": 9,
 "priceMin": 6,
 "priceMax": 8,
@@ -299,7 +383,7 @@ weights: {
         messages=messages,
         temperature=0.1,
         max_tokens=250,
-        presence_penalty=1.5
+        presence_penalty=0.5
     )
     reply = completion.choices[0].message.content
     return reply
@@ -308,7 +392,7 @@ weights: {
 def main_test():
 
     print(generate_description(
-          "I'm in the market for an electric car that's sleek, fast, and has all the latest tech features. Price isn't a huge concern, but I don't want to break the bank. I need something with enough range to handle my daily commute and occasional road trips."
+          "I want to by EfdQsdds"
          )
     )
 
