@@ -1,9 +1,12 @@
-import openai
+from openai import OpenAI
 import gradio as gr
 import os
 
-# Retrieve the API key from an environment variable for security
-openai.api_key = "API_KEY"
+client = OpenAI(
+
+    api_key="sk-..."
+)
+
 
 # Load CSS styles from styles.css
 with open("styles.css", "r") as file:
@@ -30,14 +33,14 @@ def chat_with_gpt(user_input):
     messages = create_message_list(conversation_history, user_input)
     
     # Call the OpenAI API with the conversation history
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         temperature= 1, 
         messages=messages
     )
 
     # Extract the assistant's message from the response
-    assistant_response = response.choices[0].message['content']
+    assistant_response = response.choices[0].message.content
     
     # Update conversation history
     conversation_history.append({"role": "assistant", "content": assistant_response})
