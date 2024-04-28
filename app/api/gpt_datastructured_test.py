@@ -262,10 +262,9 @@ AMG EQE 43 4MATIC SUV
 AMG EQE 53 4MATIC+ SUV):
     "ready": true
 
-    """},
-
-    {"role": "user", "content": "I'm in the market for an electric car that's sleek, fast, and has all the latest tech features. Price isn't a huge concern, but I don't want to break the bank. I need something with enough range to handle my daily commute and occasional road trips."},
-    {"role": "assistant", "content": """
+    """}, {"role": "user",
+           "content": "I'm in the market for an electric car that's sleek, fast, and has all the latest tech features. Price isn't a huge concern, but I don't want to break the bank. I need something with enough range to handle my daily commute and occasional road trips."},
+                {"role": "assistant", "content": """
 {
 "configuration": {
 "name": "Mercedes",
@@ -298,10 +297,9 @@ AMG EQE 53 4MATIC+ SUV):
 },
 "ready": true
 }
-"""},
-    {"role": "user", "content": "I'm an eco-conscious consumer looking for an electric car with a focus on sustainability. It should have a minimal carbon footprint and be made from recycled materials where possible. Range and price are secondary considerations for me."
-},
-    {"role": "assistant", "content": """
+"""}, {"role": "user",
+       "content": "I'm an eco-conscious consumer looking for an electric car with a focus on sustainability. It should have a minimal carbon footprint and be made from recycled materials where possible. Range and price are secondary considerations for me."
+       }, {"role": "assistant", "content": """
 }
 "configuration": {
 "name": "Mercedes",
@@ -334,9 +332,8 @@ AMG EQE 53 4MATIC+ SUV):
 },
 "ready": false
 }
-"""},
-                {"role": "user",
-                 "content": "I'm a tech enthusiast looking for an electric car with the latest connectivity options and autonomous driving capabilities. Performance is important to me, so I want something with high horsepower and fast acceleration. Price is not a concern."},
+"""}, {"role": "user",
+       "content": "I'm a tech enthusiast looking for an electric car with the latest connectivity options and autonomous driving capabilities. Performance is important to me, so I want something with high horsepower and fast acceleration. Price is not a concern."},
                 {"role": "assistant", "content": """
 {
 "configuration": {
@@ -370,13 +367,7 @@ AMG EQE 53 4MATIC+ SUV):
 },
 "ready": false
 }
-"""}
-    #{"role": "user", "content": f"{raw_message}"},
-    #{"role": "assistant", "content": f"{raw_message}"},
-    #{"role": "user", "content": f"{raw_message}"}
-]
-
-    messages.append({"role": "user", "content": f"{raw_message}"})
+"""}, {"role": "user", "content": f"{raw_message}"}]
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
