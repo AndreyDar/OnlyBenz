@@ -13,41 +13,50 @@ def generate_wrapup(raw_message):
                             You are wrapping a dealer chatbot conversation with mercades-benz customer.
                             Your Task:
                              Given a list of names of electric cars(next message provided by the system), that are being suggested to the user
-                             YOU NEED TO:
-                              1) Verify the match:
-                                    There is a match if the user explicitly specified the car name he wants. Otherwise there is no match
-                              2) If there is a match:
+                              and given the names of cars chosen by the user(following message provided by the user) YOU NEED TO:
+                              1) Compare the GIVEN CARS and CHOSEN CARS
+                              2) Verify the metch (match, only if the at least one full name, i.e. every letter in it, matches)
+                              3) If there is a mathe:
                                 You need to substitute the example values(**EXAMPLE**) of the parameters listed in a json structure(**TAMPLATE**). The instruction to the substitution of example values and parameter description will be provided with a json structure sample.
                                 **TEMPLATES**
                                 {
                                 "chosenCars" : [**EXAMPLE**, **EXAMPLE**,...]
                                 "anyMatches" : true
                                 }
-                              3) If there are no mathes: 
+                              4) If there are no mathes: 
                                 Set "anyMatches" with false: 
                                 {
                                 "anyMatches" : false
                                 }
+                            """}, {"role": "system",
+                 "content": """ 
+                            EQS, EQB
                             """},
                 {"role": "user",
                  "content": """ 
-                                No, that's not what I wanted
+                                No, that's not what i wanted
                                 """},
                 {"role": "assistant",
                  "content": """ 
                             {
                                 "anyMatches" : false
                             }
+                            """}, {"role": "system",
+                 "content": """ 
+                            EQB
                             """},
                 {"role": "user",
                  "content": """ 
-                                Yes, I lowe this car!
+                                EQA 300
                                 """},
                 {"role": "assistant",
                  "content": """ 
                             {
                                 "anyMatches" : false
                             }
+                            """}, {"role": "system",
+                 "content": """ 
+                            EQS
                             """},
                 {"role": "user",
                  "content": """ 
@@ -62,16 +71,15 @@ def generate_wrapup(raw_message):
                             """}
                 ]
 
-    messages.append({"role": "user", "content": f"{raw_message}"})
+    messages.append({raw_message})
+#    messages.append({"role": "user", "content": "EQB"})
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=messages,
-        temperature=0.1,
+        temperature=1,
         max_tokens=250,
     )
-
-
 
 
     reply = completion.choices[0].message.content
@@ -79,7 +87,7 @@ def generate_wrapup(raw_message):
 
 
 def main_test_1():
-    print(generate_wrapup("I love EQS"))
+    print(generate_wrapup(raw_message))
 
 
 # Press the green button in the gutter to run the script.
